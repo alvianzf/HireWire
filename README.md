@@ -90,12 +90,46 @@ Run the CLI to scrape jobs:
 python cli.py --queries "Python Developer,Data Engineer" --locations "Singapore,Jakarta" --max-items 10 --list
 ```
 
-**Arguments:**
+Arguments:
 
-* `--queries` : Comma-separated job titles.
-* `--locations` : Comma-separated locations.
-* `--max-items` : Maximum number of jobs to fetch.
-* `--list` : List jobs in console after scraping.
+- --queries : Comma-separated job titles.
+- --locations : Comma-separated locations.
+- --max-items : Maximum number of jobs to fetch.
+- --list : List jobs in console after scraping.
+
+Example Job Object
+
+After scraping, each job posting is stored in the database and can be represented as a Job Object:
+
+```json
+{
+    "id": 1,
+    "title": "Python Developer",
+    "company": "TechCorp Pte Ltd",
+    "location": "Singapore",
+    "url": "https://www.linkedin.com/jobs/view/123456789",
+    "date_posted": "2025-08-22"
+}
+```
+
+Console listing with --list option:
+```
+- Python Developer | TechCorp Pte Ltd | Singapore | https://www.linkedin.com/jobs/view/123456789
+- Data Engineer    | DataWorks Inc   | Jakarta   | https://www.linkedin.com/jobs/view/987654321
+```
+
+Accessing Jobs in Code
+```python
+from app.bootstrap import Container
+
+container = Container()
+jobs = container.repository.list_all()  # returns a list of Job objects
+
+for job in jobs:
+    print(job.title, job.company, job.location, job.url)
+```
+
+This allows direct integration with multi-agent AI workflows or analytics pipelines.
 
 ---
 
