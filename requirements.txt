@@ -1,0 +1,7 @@
+apify-client>=1.6.0
+python-dotenv>=1.0.1
+fastapi>=0.95.2
+uvicorn[standard]>=0.22.0
+sqlmodel>=0.0.8
+httpx>=0.24.1
+pydantic>=2.3.1
